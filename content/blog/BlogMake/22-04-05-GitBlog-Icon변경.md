@@ -1,7 +1,7 @@
 ---
 title: '22-04-05-GitBlog-Icon변경'
 date: 2022-04-05 10:27:00 +0900
-category: 'Github_Blog'
+category: 'Blog_Jekyll'
 draft: false
 ---
 
