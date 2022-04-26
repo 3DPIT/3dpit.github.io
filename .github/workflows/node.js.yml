@@ -36,5 +36,5 @@ jobs:
         folder: .
         clean: false
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GH_PAT: ${{ secrets.KMP
+        GH_PAT: ${{ secrets.KMP }}
         single-commit: true
