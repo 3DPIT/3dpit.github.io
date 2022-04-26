@@ -35,5 +35,6 @@ jobs:
         branch: master
         folder: .
         clean: false
-        ssh-key: ${{ secrets.KMP }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_PAT: ${{ secrets.KMP
         single-commit: true
