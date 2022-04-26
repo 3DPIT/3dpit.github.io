@@ -35,4 +35,5 @@ jobs:
         branch: master
         folder: .
         clean: false
+        ssh-key: ${{ secrets.KMP }}
         single-commit: true
