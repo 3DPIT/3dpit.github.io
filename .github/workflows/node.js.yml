@@ -32,7 +32,7 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.2
       with:
-        branch: master
+        branch: main
         folder: .
         clean: false
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
