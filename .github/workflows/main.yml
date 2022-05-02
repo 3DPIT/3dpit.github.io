@@ -102,6 +102,10 @@ jobs:
         access-token: ${{ secrets.KMP }}
         deploy-branch: master
         gatsby-args: --prefix-paths
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: master
         folder: .
         clean: false
         GITHUB_TOKEN: ${{ secrets.KMP }}
