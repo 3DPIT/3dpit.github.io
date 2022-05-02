@@ -22,7 +22,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
         token: ${{ github.token }}
-        branch: .
+        branch: master
         folder: .
         clean: false
 #         branch: master
