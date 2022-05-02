@@ -102,3 +102,9 @@ jobs:
         access-token: ${{ secrets.KMP }}
         deploy-branch: master
         gatsby-args: --prefix-paths
+        folder: .
+        clean: false
+        GITHUB_TOKEN: ${{ secrets.KMP }}
+        GH_PAT: ${{ secrets.KMP }}
+        single-commit: true
+
