@@ -62,7 +62,6 @@ jobs:
     - run: git config --global credential.helper wincred
     - run: npm install 
     - run: npm install -g gatsby-cli
-    - run: npm run deploy
 
     - run: npm ci
     - run: npm test
