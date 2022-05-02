@@ -33,47 +33,73 @@
 # # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
   
-name: Node.js CI
+# name: Node.js CI
 
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [14.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#         cache: 'npm'
+#     - run: ls
+#     - run: git config --global user.email "oksos0817@naver.com"
+#     - run: git config --global user.name "3dpit"
+#     - run: npm install 
+#     - run: npm install -g gatsby-cli
+#     - run: npm run deploy
+
+#     - run: npm ci
+#     - run: npm run build --if-present
+#     - run: npm test
+#     - name: Deploy 🚀
+#       uses: JamesIves/github-pages-deploy-action@v4.3.3
+#       with:
+#         branch: master
+#         folder: .
+#         clean: false
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         GH_PAT: ${{ secrets.KMP }}
+#         single-commit: true
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    branches:
+      - main
+name: build gatsby
 jobs:
-  build:
-
+  build_gatsby:
+    name: build
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: ls
-    - run: git config --global user.email "oksos0817@naver.com"
-    - run: git config --global user.name "3dpit"
-    - run: npm install 
-    - run: npm install -g gatsby-cli
-    - run: npm run deploy
+      - uses: actions/checkout@v1
 
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.3.3
-      with:
-        branch: master
-        folder: .
-        clean: false
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GH_PAT: ${{ secrets.KMP }}
-        single-commit: true
+      - name: yarn install
+        run: yarn install
+
+      - name: gatsby build
+        env:
+          GH_API_KEY: ${{ secrets.KMP }}
+        run: yarn build
+
+      - name: deploy
+        uses: maxheld83/ghpages@v0.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.KMP }}
+          BUILD_DIR: 'public/'
