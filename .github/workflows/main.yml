@@ -59,7 +59,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: ls
-    - run: git config --global credential.helper wincred
+#     - run: git config --global credential.helper wincred
     - run: npm install 
     - run: npm install -g gatsby-cli
 
@@ -71,9 +71,9 @@ jobs:
         branch: master
         folder: .
         clean: false
-        GITHUB_TOKEN: ${{ secrets.KMP }}
-        GH_PAT: ${{ secrets.KMP }}
-        single-commit: true
+        token: ${{ secrets.KMP }}
+#         GH_PAT: ${{ secrets.KMP }}
+#         single-commit: true
 
 # name: Gatsby Publish
 
