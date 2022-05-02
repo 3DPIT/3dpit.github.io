@@ -92,10 +92,10 @@ jobs:
 #       - name: yarn install
 #         run: yarn install
 
-      - name: gatsby build
-        env:
-          GH_API_KEY: ${{ secrets.KMP }}
-        run: npm run build
+#       - name: gatsby build
+#         env:
+#           GH_API_KEY: ${{ secrets.KMP }}
+#         run: npm run build
 
       - name: deploy
         uses: maxheld83/ghpages@v0.2.1
