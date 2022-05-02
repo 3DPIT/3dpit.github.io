@@ -61,7 +61,7 @@ jobs:
     - run: ls
     - run: git config --global credential.helper wincred
     - run: git config --global user.email "oksos0817@naver.com"
-    - run: git config --global user.name "3dpit"
+    - run: git config --global user.name "https://github.com/3dpit"
     - run: npm install 
     - run: npm install -g gatsby-cli
     - run: npm run deploy
