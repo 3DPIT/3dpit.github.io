@@ -59,6 +59,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: ls
+    - run: git config --global user.email "oksos0817@naver.com"
+    - run: git config --global user.name "3"
     - run: npm install 
     - run: npm install -g gatsby-cli
     - run: npm run deploy
