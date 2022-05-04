@@ -28,7 +28,7 @@ draft: false
 - 현재 대시보드를 그대로 다른 환경의 컴퓨터에서도 적용하고 싶음
 - 그러는 과정에서 생기는 문제를 해결하고 유지보수하기 위함
 
-## 01.grafana 및 postgres docker-compose 파일 생성 
+## 01.grafana 및 postgres docker-compose 파일 생성
 
 ```yml
 version: '3.1'
