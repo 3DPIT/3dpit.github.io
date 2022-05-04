@@ -22,10 +22,10 @@ jobs:
               ${{ runner.os }}-yarn-
          run: npm install --global gatsby-cli
 
-      - name: gatsby build
-        env:
-          GH_API_KEY: ${{ secrets.KMP }}
-        run: npm run build
+#       - name: gatsby build
+#         env:
+#           GH_API_KEY: ${{ secrets.KMP }}
+#         run: npm run build
 
       - name: deploy
         uses: maxheld83/ghpages@v0.2.1
