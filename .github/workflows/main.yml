@@ -71,9 +71,8 @@ jobs:
         branch: main
         folder: .
         clean: false
-        token: ${{ secrets.KMP }}
-#         GH_PAT: ${{ secrets.KMP }}
-#         single-commit: true
+        GITHUB_TOKEN: ${{ secrets.KMP}
+        REPOSITORY_NAME: 3dpit/3dpit.github.io
  
 # name: Gatsby Publish
 
