@@ -68,7 +68,7 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
-        branch: master
+        branch: main
         folder: .
         clean: false
         token: ${{ secrets.KMP }}
