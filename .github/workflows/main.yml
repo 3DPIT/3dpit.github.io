@@ -35,44 +35,79 @@
   
 # name: Node.js CI
 
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [14.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#         cache: 'npm'
+#     - run: ls
+# #     - run: git config --global credential.helper wincred
+#     - run: npm install 
+#     - run: npm install -g gatsby-cli
+
+#     - run: npm ci
+#     - run: npm test
+#     - name: Deploy 🚀
+#       uses: JamesIves/github-pages-deploy-action@v4.3.3
+#       with:
+#         branch: master
+#         folder: .
+#         clean: false
+#         GITHUB_TOKEN: ${{ secrets.KMP }}
+#         REPOSITORY_NAME: 3dpit/3dpit.github.io
+ 
+name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: ls
-#     - run: git config --global credential.helper wincred
-    - run: npm install 
-    - run: npm install -g gatsby-cli
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - run: npm ci
-    - run: npm test
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.3.3
-      with:
-        branch: master
-        folder: .
-        clean: false
-        GITHUB_TOKEN: ${{ secrets.KMP }}
-        REPOSITORY_NAME: 3dpit/3dpit.github.io
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: |
+          npm run build
+          npm run export
+          touch ./out/.nojekyll
+      - name: Deploy
+        uses: jamesives/github-pages-deploy-action@4.1.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.KMP }}
+          BRANCH: master
+          FOLDER: out
  
 # name: Gatsby Publish
 
