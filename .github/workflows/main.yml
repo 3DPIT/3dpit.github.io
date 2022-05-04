@@ -68,10 +68,10 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
-        branch: main
+        branch: master
         folder: .
         clean: false
-        GITHUB_TOKEN: ${{ secrets.KMP}
+        GITHUB_TOKEN: ${{ secrets.KMP }}
         REPOSITORY_NAME: 3dpit/3dpit.github.io
  
 # name: Gatsby Publish
