@@ -1,37 +1,37 @@
-on:
-  push:
-    branches:
-      - main
-name: build gatsby
-jobs:
-  build_gatsby:
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
+# on:
+#   push:
+#     branches:
+#       - main
+# name: build gatsby
+# jobs:
+#   build_gatsby:
+#     name: build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-         restore-keys: |
-              ${{ runner.os }}-yarn-
-         run: npm install --global gatsby-cli
+#       - name: Get yarn cache directory path
+#         id: yarn-cache-dir-path
+#         run: echo "::set-output name=dir::$(yarn cache dir)"
+#       - uses: actions/cache@v1
+#         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+#         with:
+#          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: |
+#               ${{ runner.os }}-yarn-
+#          run: npm install --global gatsby-cli
 
-#       - name: gatsby build
+# #       - name: gatsby build
+# #         env:
+# #           GH_API_KEY: ${{ secrets.KMP }}
+# #         run: npm run build
+
+#       - name: deploy
+#         uses: maxheld83/ghpages@v0.2.1
 #         env:
-#           GH_API_KEY: ${{ secrets.KMP }}
-#         run: npm run build
-
-      - name: deploy
-        uses: maxheld83/ghpages@v0.2.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_PAT: ${{ secrets.KMP }}
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           GH_PAT: ${{ secrets.KMP }}
 #           BUILD_DIR: '.'
 
 
@@ -120,37 +120,37 @@ jobs:
  
 # name: Gatsby Publish
 
-# on:
-#   push:
-#     branches:
-#       - main
-# jobs:
-#   build:
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
 
-#     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-#     strategy:
-#       matrix:
-#         node-version: [14.x]
-#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
-#         access-token: ${{ secrets.KMP }}
-#         deploy-branch: master
-#         gatsby-args: --prefix-paths
-#     - name: Deploy 🚀
-#       uses: JamesIves/github-pages-deploy-action@v4.3.3
-#       with:
-#         branch: master
-#         folder: .
-#         clean: false
-#         GITHUB_TOKEN: ${{ secrets.KMP }}
-#         GH_PAT: ${{ secrets.KMP }}
-#         single-commit: true
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        access-token: ${{ secrets.KMP }}
+        deploy-branch: master
+        gatsby-args: --prefix-paths
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: master
+        folder: .
+        clean: false
+        GITHUB_TOKEN: ${{ secrets.KMP }}
+        GH_PAT: ${{ secrets.KMP }}
+        single-commit: true
 
