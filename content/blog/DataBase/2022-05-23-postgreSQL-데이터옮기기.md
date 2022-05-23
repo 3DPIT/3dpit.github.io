@@ -77,9 +77,9 @@ draft: false
 
   ![image-20220523162137534](../../assets/img/post/2022-05-23-postgreSQL-데이터옮기기/image-20220523162137534.png)
 
-  	- 아래와 같이 sql문 생성됨 
+  - 위 와 같이 sql문 생성됨 
 
- - dump_postgresql.sql 문서 확인
+ - dump_superset.sql 문서 확인
 
    ![image-20220523163454830](../../assets/img/post/2022-05-23-postgreSQL-데이터옮기기/image-20220523163454830.png)
 
@@ -98,6 +98,9 @@ draft: false
   /dump_superset.sql
   ```
   
+  - 현재 그대로 진행하면 경로에 파일이 없다고 나옴 02.3 문제해결 부분 참고
+    - 제대로 동작을 한다면 아래와 같은 결과로 진행됨
+  
   - before
   
     ![image-20220523164056589](../../assets/img/post/2022-05-23-postgreSQL-데이터옮기기/image-20220523164056589.png)
@@ -105,9 +108,9 @@ draft: false
   - after
   
     ![image-20220523221801881](../../assets/img/post/2022-05-23-postgreSQL-데이터옮기기.assets/image-20220523221801881.png)
-    
+  
     ![image-20220523221841551](../../assets/img/post/2022-05-23-postgreSQL-데이터옮기기.assets/image-20220523221841551.png)
-    
+  
     - 위와 같이 테이블이 생성됨이 보인다. 
 
 ### 02.3 문제 해결
@@ -126,10 +129,12 @@ draft: false
 
     - 로컬 파일 복사
 
-    - 파일위치는 /root에 있는 경우
+    - 파일위치는 /root에 있는 경우로 진행
+
+    - 실제 컨테이너로 들어가서 확인 진행
 
       ![image-20220523221618101](../../assets/img/post/2022-05-23-postgreSQL-데이터옮기기.assets/image-20220523221618101.png)
-
+    
       - 위와 같이 복사된것이 확인됨
 
 - 그리고 명령어 다시 실행해주면 제대로 동작함
