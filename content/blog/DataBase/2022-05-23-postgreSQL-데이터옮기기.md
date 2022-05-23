@@ -78,7 +78,7 @@ draft: false
 - 실제 사용 | 해당경로 위치에서 실행
 
   ```sql
-  docker exec postgres psql -U postgres -d postgres -f C:\Users\km.park\Desktop\dump_superset.sql
+  docker exec postgres psql -U postgres -d postgres -f C:\Users\km.park\Desktop\blogGatsby\dump_superset.sql
   ```
 
   - before
