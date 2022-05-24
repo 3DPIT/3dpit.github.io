@@ -9,7 +9,7 @@ module.exports = {
   siteUrl: `https://3dpit.github.io`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account
-    github: `https://3dpit.github.io`, // Your GitHub account
+    github: `3dpit`, // Your GitHub account
     medium: ``, // Your Medium account
     facebook: ``, // Your Facebook account
     linkedin: ``, // Your LinkedIn account

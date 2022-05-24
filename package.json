@@ -76,7 +76,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/3dpit/3dpit.github.io.git"
+    "url": "https://github.com/3dpit/3dpit.github.io.git"
   },
   "scripts": {
     "create": "gatsby-post-gen",
