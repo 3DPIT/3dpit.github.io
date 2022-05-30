@@ -189,4 +189,86 @@ draft: false
   ,(nextval('seq_idNum'),'BBK','운동화',NULL,30,2);
   ```
 
+## 05.WHERE 
+
+- **Oracle, Postgres**
+
+  ```sql
+  SELECT * FROM userTBL;
   
+  SELECT * FROM userTBL WHERE userName = '김경호';
+  
+  SELECT userID, userName FROM userTBL WHERE birthYear >= 1970 AND height >=182;
+  
+  SELECT userID, userName FROM userTBL WHERE birthYear >= 1970 OR height >=182;
+  
+  SELECT userName, height FROM userTBL WHERE height >= 180 AND height <=183;
+  
+  SELECT userName, height FROM userTBL WHERE height BETWEEN 180 AND 183;
+  
+  SELECT userName, addr FROM userTBL WHERE addr = '경남' OR addr='전남' OR addr='경북';
+  
+  SELECT userName, addr FROM userTBL WHERE addr IN ('경남', '전남', '경북');
+  
+  SELECT userName, height FROM userTBL WHERE userName LIKE '김%';
+  
+  SELECT userName, height FROM userTBL WHERE userName LIKE '_종신';
+  
+  SELECT userName, height FROM userTBL WHERE height > 177;
+  
+  SELECT userName, height FROM userTBL 
+  	WHERE height > (SELECT height FROM userTBL WHERE userNAME = '김경호'); 
+  
+  SELECT userName, height FROM userTBL 
+  	WHERE height >= (SELECT height FROM userTBL WHERE addr = '경남'); -- 에러가남
+  	
+  SELECT userName, height FROM userTBL 
+  	WHERE height >= ANY(SELECT height FROM userTBL WHERE addr = '경남'); 
+  	
+  SELECT userName, height FROM userTBL 
+  	WHERE height = ANY(SELECT height FROM userTBL WHERE addr = '경남'); 
+  
+  SELECT userName, height FROM userTBL 
+  	WHERE height IN (SELECT height FROM userTBL WHERE addr = '경남'); 
+  ```
+
+## 06.Order by
+
+- **Oracle, Postgres**
+
+  ```sql
+  SELECT userName, mDate FROM userTBL ORDER BY mDate;
+  
+  SELECT userName, mDate FROM userTBL ORDER BY mDate DESC;
+  
+  SELECT userName, height FROM userTBL ORDER BY height DESC, userName ASC;
+  
+  SELECT addr FROM userTBL;
+  
+  SELECT addr FROM userTBL ORDER BY addr;
+  
+  SELECT DISTINCT addr FROM userTBL;
+  ```
+
+## 07.ROWNUM
+
+- **Oracle**
+
+  ```sql
+  SELECT employee_id, hire_date FROM EMPLOYEES
+  	ORDER BY hire_date ASC;
+  
+  SELECT * FROM 
+  	(SELECT employee_id, hire_date FROM EMPLOYEES ORDER BY hire_date ASC)
+  WHERE ROWNUM <= 5;
+  
+  SELECT employee_id, hire_date FROM EMPLOYEES
+  WHERE ROWNUM <= 5;
+  
+  SELECT employee_id, hire_date FROM EMPLOYEES SAMPLE(5);
+  ```
+
+- 
+
+
+
