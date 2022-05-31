@@ -38,7 +38,7 @@ draft: false
   ```sql
   SELECT * FROM SYS.DBA_USERS;
   
-  SELECT * FROM SYS.DBA_USERS WHERE OWNER = 'HR'; -- 저장된 SYS 사용자의 테이블 조회
+  SELECT * FROM SYS.DBA_TABLES WHERE OWNER = 'HR'; -- 저장된 SYS 사용자의 테이블 조회
   
   SELECT * FROM SYS.DBA_TAB_COLUMNS WHERE OWNER = 'HR' AND TABLE_NAME = 'DEPARTMENTS'; -- 테이블의 컬럼 이름 형식 확인
   ```
@@ -179,7 +179,7 @@ draft: false
   ,(nextval('seq_idNum'),'KBS','노트북','전자',1000,1)
   ,(nextval('seq_idNum'),'JYP','모니터','전자',200,1)
   ,(nextval('seq_idNum'),'BBK','모니터','전자',200,5)
-  ,(nextval('seq_idNum'),'KBS','청바지','의류',50,3)
+  ,(nextval('seq_idNum'),'KBS','청바지','의류',50,3)s
   ,(nextval('seq_idNum'),'BBK','메모리','전자',80,10)
   ,(nextval('seq_idNum'),'SSK','책','서적',15,5)
   ,(nextval('seq_idNum'),'EJW','책','서적',15,2)
@@ -268,7 +268,207 @@ draft: false
   SELECT employee_id, hire_date FROM EMPLOYEES SAMPLE(5);
   ```
 
-- 
+  ![image-20220531080946290](../../assets/img/post/2022-05-30-oracle과-postgres-4일차비교/image-20220531080946290.png)
 
+  
 
+- **Postgres**
+
+  ```sql
+  SELECT employee_id, hire_date FROM EMPLOYEES
+  	ORDER BY hire_date ASC;
+  
+  SELECT * FROM 
+  	(SELECT employee_id, hire_date FROM EMPLOYEES ORDER BY hire_date ASC) AS subTable
+  LIMIT 5;
+  
+  SELECT employee_id, hire_date FROM EMPLOYEES
+  LIMIT 5;
+  
+  SELECT employee_id, hire_date FROM EMPLOYEES order by random() limit ; -- sample이랑은 비슷하지 않음
+  ```
+
+## 08.테이블 복사
+
+- **Oracle, Postgres**
+
+  ```sql
+  CREATE TABLE buyTBL2 AS (SELECT * FROM buyTBL); -- 전체테이블 복사
+  
+  SELECT * FROM buyTBL2;
+  
+  CREATE TABLE buyTBL3 AS (SELECT userID, prodName FROM buyTBL); -- 부분 컬럼 테이블 
+  
+  SELECT * FROM buyTBL3;
+  ```
+
+## 09.GROUP BY  및 HAVING 그리고 집계함수
+
+- **Oracle**
+
+  ```sql
+  SELECT userID, SUM(amount) FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(amount) AS "총 구매 개수" FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(price*amount) AS "총 구매액" FROM buyTBL GROUP BY userID;
+  
+  
+  SELECT userID, SUM(amount) FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(amount) AS "총 구매 개수" FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(price*amount) AS "총 구매액" FROM buyTBL GROUP BY userID 
+  
+  SELECT AVG(amount) AS "평균 구매 개수" FROM buyTBL;
+  
+  SELECT CAST(Avg(amount)AS number(5,3)) AS "평균 구매 개수" FROM buyTBL;
+  
+  SELECT userID, CAST(Avg(amount)AS number(5,3)) AS "평균 구매 개수" FROM buyTBL
+  GROUP BY userID;
+  
+  SELECT USER, MAX(height), MIN(height) FROM userTBL GROUP BY userName;
+  
+  SELECT userName, height
+  	FROM userTBL
+  	WHERE height = (SELECT MAX(height) FROM userTBL)
+  		OR height = (SELECT MIN(height) FROM userTBL);
+  	
+  SELECT COUNT(*) FROM userTBL;
+  
+  SELECT COUNT(mobile1) AS "휴대폰이 있는 사용자" FROM userTBL;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액"
+  	FROM buyTBL
+  	GROUP BY userID;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액" -- 안되는 경우
+  	FROM buyTBL
+  	WHERE SUM(price*amount)>1000
+  	GROUP BY userID;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액" -- 안되는 경우
+  	FROM buyTBL
+  	GROUP BY userID
+  	HAVING SUM(price*amount)>1000;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액" -- 안되는 경우
+  	FROM buyTBL
+  	GROUP BY userID
+  	HAVING SUM(price*amount)>1000
+  	ORDER BY SUM(price * amount);
+  ```
+
+- **Postgres**
+
+  ```sql
+  SELECT userID, SUM(amount) FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(amount) AS "총 구매 개수" FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(price*amount) AS "총 구매액" FROM buyTBL GROUP BY userID;
+  
+  
+  SELECT userID, SUM(amount) FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(amount) AS "총 구매 개수" FROM buyTBL GROUP BY userID;
+  
+  SELECT userID AS "사용자 아이디", SUM(price*amount) AS "총 구매액" FROM buyTBL GROUP BY userID 
+  
+  SELECT AVG(amount) AS "평균 구매 개수" FROM buyTBL;
+  
+  SELECT to_char(Avg(amount), '99999999.999') AS "평균 구매 개수" FROM buyTBL;
+  
+  SELECT userID, to_char(Avg(amount),'99999999.999') AS "평균 구매 개수" FROM buyTBL
+  GROUP BY userID;
+  
+  SELECT USER, MAX(height), MIN(height) FROM userTBL GROUP BY userName;
+  
+  SELECT userName, height
+  	FROM userTBL
+  	WHERE height = (SELECT MAX(height) FROM userTBL)
+  		OR height = (SELECT MIN(height) FROM userTBL);
+  	
+  SELECT COUNT(*) FROM userTBL;
+  
+  SELECT COUNT(mobile1) AS "휴대폰이 있는 사용자" FROM userTBL;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액"
+  	FROM buyTBL
+  	GROUP BY userID;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액" -- 안되는 경우
+  	FROM buyTBL
+  	WHERE SUM(price*amount)>1000
+  	GROUP BY userID;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액" -- 안되는 경우
+  	FROM buyTBL
+  	GROUP BY userID
+  	HAVING SUM(price*amount)>1000;
+  
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액" -- 안되는 경우
+  	FROM buyTBL
+  	GROUP BY userID
+  	HAVING SUM(price*amount)>1000
+  	ORDER BY SUM(price * amount);
+  ```
+
+## 10.ROOLUP(), GROUPING_ID(), CUBE() 함수
+
+- **Oracle**
+
+  ```sql
+  SELECT idNum, groupName, SUM(price*amount) AS "비용"
+  	FROM buyTBL
+  	GROUP BY ROLLUP (groupName, idNum);
+  
+  SELECT groupName, SUM(price*amount) AS "비용"
+  	FROM buyTBL
+  	GROUP BY ROLLUP (groupName);
+  
+  SELECT groupName, SUM(price*amount) AS "비용"
+  	, GROUPING_ID(groupName) AS "추가행 여부"
+  	FROM BUYTBL 
+  	GROUP BY ROLLUP(groupName);
+  
+  DROP TABLE cubeTBL;
+  CREATE TABLE cubeTBL(prodName NCHAR(3), color NCHAR(2), amount INT);
+  
+  INSERT INTO cubeTBL VALUES('컴퓨터', '검정', 11);
+  INSERT INTO cubeTBL VALUES('컴퓨터', '파랑', 22);
+  INSERT INTO cubeTBL VALUES('모니터', '검정', 33);
+  INSERT INTO cubeTBL VALUES('모니터', '파랑', 44);
+  
+  SELECT prodName, color, SUM(amount) AS "수량합계"
+  	FROM cubeTBL
+  	GROUP BY CUBE(color, prodName)
+  	ORDER BY prodName, color;
+  ```
+
+- **Postgers** | grouping_id는 없음
+
+  ```sql
+  SELECT idNum, groupName, SUM(price*amount) AS "비용"
+  	FROM buyTBL
+  	GROUP BY ROLLUP (groupName, idNum);
+  
+  SELECT groupName, SUM(price*amount) AS "비용"
+  	FROM buyTBL
+  	GROUP BY ROLLUP (groupName);
+  
+  CREATE TABLE cubeTBL(prodName NCHAR(3), color NCHAR(2), amount INT);
+  
+  INSERT INTO cubeTBL VALUES('컴퓨터', '검정', 11);
+  INSERT INTO cubeTBL VALUES('컴퓨터', '파랑', 22);
+  INSERT INTO cubeTBL VALUES('모니터', '검정', 33);
+  INSERT INTO cubeTBL VALUES('모니터', '파랑', 44);
+  
+  SELECT prodName, color, SUM(amount) AS "수량합계"
+  	FROM cubeTBL
+  	GROUP BY CUBE(color, prodName)
+  	ORDER BY prodName, color;
+  ```
+
+  
 
