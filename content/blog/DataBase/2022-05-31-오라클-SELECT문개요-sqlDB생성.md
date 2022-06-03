@@ -19,7 +19,7 @@ draft: false
  >04.PostgreSQL로 변경하여 그라파나로 테이블 모니터링
  >
  >>04.1 Oracle -> PostgreSQL로 변환
- >>
+ >>>
  >>04.2 그라파나 대시보드 
  >
 
