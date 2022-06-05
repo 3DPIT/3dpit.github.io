@@ -155,3 +155,141 @@ SELECT userName, mDate FROM userTBL ORDER BY mDate;
 
 ## 02.중복 제거 DISTINCT
 
+- 중복을 제거하는 것
+
+```sql
+SELECT DISTINCT addr FROM userTBL;
+```
+
+- 중복된 결과가 있는 경우 한개만 보여준다.
+
+## 03.ROWNUM열과 SAMPLE문
+
+- 제일 앞의 5건만 보여주는 방법
+
+  ```sql
+  SELECT * FROM
+  	(SELECT employ_id, hire_date FROM employees ORDER BY hire_date ASC)
+  	WHERE ROWNUM <= 5;
+  ```
+
+  - 결과를 5건만 보여주는 것 일뿐
+    - 위의 경우만 ORDER BY를 해서 성능저하 야기
+      - Oracle의 성능에는 상당히 나쁜 영향을 미침
+      - 모든 데이터를 정렬한 후에 5개만 가져오는 방식
+
+- 임의 데이터를 추출하고 싶은 경우
+
+  - **SAMPLE(퍼센트)**
+    - 퍼센트는 0초과 100미만 값
+
+  ```sql
+  SELECT employee_id, hire_date FROM EMPLOYEES SAMPLE(5);
+  ```
+
+  - 5건 일수 있고 아닐수 있음
+
+## 04.테이블을 복사하는 CREATE TABLE ... AS SELECT
+
+- 형식
+
+  ```sql
+  CREATE TABLE 새로운테이블이름 AS (SELECT 복사할 열 FROM 기존 테이블)
+  ```
+
+- 사용법
+
+  ````sql
+  CREATE TABLE buyTBL2 AS (SELECT * FROM buyTBL);
+  
+  SELECT * FROM buyTBL2; -- 조회로 실제 결과 확인
+  ````
+
+  - 일부열만 복사 할 수 있음
+
+    ```sql
+    CREATE TABLE buyTBL3 AS (SELECT userID, prodName FROM buyTBL);
+    ```
+
+  - Primary Key 및 Foreign Key는 복사되지 않음
+
+    - 즉, PK나 FK등의 제약 조건은 복사되지 않음
+
+## 05.GROUP BY 및 HABVING 그리고 집계 함수
+
+### 05.1 GROUP BY 
+
+- 말그대로 그룹으로 묶어주는 역할
+
+  ```sql
+  SELECT userID, SUM(amount) FROM buyTBL GROUP BY userID;
+  ```
+
+  - 이전의 BBK 12의 데이터와 18 의 데이터를 가지고 있었다면 위를 적용하면 30으로 한번에 보여지는 것
+
+  ```sql
+  SELECT userID AS "사용자 아이디", SUM(price * amount) AS "총 구매액" FROM buyTBL GROUP BY userID;
+  ```
+
+  - 위와 같이 가격 * 수량의 총합을 구할 수 있음
+
+#### 05.1.1 집계 함수
+
+- GROUP BY와 함께 자주 사용되는 집계 함수
+
+| 함수명          |                설명                |
+| :-------------- | :--------------------------------: |
+| AVG()           |                평균                |
+| MIN()           |               최소값               |
+| MAX()           |               최대값               |
+| COUNT()         |             행의 개수              |
+| COUNT(DISTINCT) | 행의 개수를 세고 중복은 1개만 인정 |
+| STDEV()         |              표준편차              |
+| VARIANCE()      |                분산                |
+
+- 전체 구매자가 구매한 물품의 개수의 평균
+
+  ```sql
+  SELECT AVG(amount)AS "평균 구매 개수" FROM buyTBL;
+  ```
+
+- 소수점 조절 하는 법
+
+  ```sql
+  SELECT CAST(AVG(amount) AS NUMBER(5,3)) AS "평균 구매 개수" FROM buyTBL;
+  ```
+
+- 사용자 별로 한 번 구매시 물건의 평균
+
+  ```sql
+  SELECT CAST(AVG(amount) AS NUMBER(5,3)) AS "평균 구매 개수" FROM buyTBL GROUP BY userID;
+  ```
+
+- 가장 큰키와 가장 작은 키의 회원이름과 키 출력
+
+  ```sql
+  SELECT userName, MAX(height), MIN(height) FROM userTBL GROUP BY userName;
+  ```
+
+  - 위와 같이 하면 전체가 다 나오게됨
+
+  ```sql
+  SELECT userName, height
+  	FROM userTBL
+  	WHERE height = (SELECT MAX(height)FROM user TBL) OR height = (SELECT MIN(height)FROM userTBL);
+  ```
+
+### 05.2 Having절
+
+- 사용자별 총 구매액에서 1000명인 사용자 조회
+
+  ```sql
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액"
+  	FROM buyTBL
+  	WHERE SUM(price * amount) >1000
+  	GROUP BY userID;
+  ```
+
+  - 위와 같이 하면 에러가 발생함 
+  - 집계함수의 경우 WHERE절에 나타날 수 없음
+
