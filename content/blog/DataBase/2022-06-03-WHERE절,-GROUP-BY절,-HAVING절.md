@@ -9,6 +9,45 @@ draft: false
 
 ## 목차
 
+>
+>01.WHERE절
+>
+>>  01.1 관계 연산자 사용
+>>
+>>  > AND
+>>  >
+>>  > OR
+>>
+>>  01.2 BETWEEN... AND와 IN() 그리고 LIKE
+>>
+>>  > BETWEEN AND
+>>  >
+>>  > OR OR ... -> IN()
+>>  >
+>>  > LIKE
+>>
+>>  01.3 ANY/ ALL/ SOME 그리고 서브 쿼리(SubQuery, 하위 쿼리)
+>>
+>>  > ANY
+>>
+>>  01.4 ORDER BY | 원하는 순서대로 정렬
+>
+>02.중복 제거 DISTINCT
+>
+>03.ROWNUM열과 SAMPLE문
+>
+>04.테이블을 복사하는 CREATE TABLE ... AS SELECT
+>
+>05.GROUP BY 및 HABVING 그리고 집계 함수
+>
+>> 05.1 GROUP BY 
+>>
+>> > 05.1.1 집계 함수
+>>
+>> 05.2 Having절
+>
+> 06.ROLLUP(), GROUPING_ID(), CUBE()함수
+
 ## 01.WHERE절
 
 - 조회하는 결과에 특정한 조건을 줘서, 원하는 데이터만 보고싶을 때 사용
@@ -292,4 +331,55 @@ SELECT DISTINCT addr FROM userTBL;
 
   - 위와 같이 하면 에러가 발생함 
   - 집계함수의 경우 WHERE절에 나타날 수 없음
+
+  ```sql
+  SELECT userID AS "사용자", SUM(price*amount) AS "총 구매액"
+  	FROM buyTBL
+  	HAVING SUM(price * amount) >1000;
+  ```
+
+  - HAVING을 이용하면 된다.
+
+## 06.ROLLUP(), GROUPING_ID(), CUBE()함수
+
+### 06.1 ROLLUP()
+
+- 총합 또는 중간 합계가 필요할 때 사용
+
+- 분류별 합계 및 총합 구하기
+
+  ```sql
+  SELECT idNum, groupName, SUM(price * amount) AS "비용"
+  	FROM buyTbl
+  	GROUP BY ROLLUP (groupName, idNum);
+  ```
+
+  - 결과에 idNum 열이 NULL로 되어 있는 추가된 행이 각 그룹의 소합계 의미
+  - 마지막 행은 각 소합계의 합계 
+    - 즉, 총합계의 결과
+
+### 06.2 GROUPING_ID()
+
+- 데이터 인지, 합계인지 알기 위할 때 사용
+- 함수의 결과가 
+  - 0이면 데이터
+  - 1이면 합계를 위해 추가된 열
+
+```sql
+SELECT groupName, SUM(price * amount) AS "비용"
+, GROUPING_ID(groupName) AS "추가행 여부"
+	FROM buyTbl
+	GROUP BY ROLLUP(groupName);
+```
+
+### 06.3 CUBE()
+
+- ROLLUP()과 비슷한 개념이지만, 다차원 정보의 데이터를 요약하는데 더 적당
+
+```sql
+SELECT prodName, color, SUM(amount) AS "수량합계"
+	FROM cubeTbl
+	GROUP BY CUBE(color, prodName)
+	ORDER BY prodName, color;
+```
 
