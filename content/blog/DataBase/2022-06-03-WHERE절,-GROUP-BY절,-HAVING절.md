@@ -13,23 +13,23 @@ draft: false
 >01.WHERE절
 >
 >>  01.1 관계 연산자 사용
->>
+>>>
 >>  > AND
 >>  >
 >>  > OR
->>
+>>>
 >>  01.2 BETWEEN... AND와 IN() 그리고 LIKE
->>
+>>>
 >>  > BETWEEN AND
 >>  >
 >>  > OR OR ... -> IN()
 >>  >
 >>  > LIKE
->>
+>>>
 >>  01.3 ANY/ ALL/ SOME 그리고 서브 쿼리(SubQuery, 하위 쿼리)
->>
+>>>
 >>  > ANY
->>
+>>>
 >>  01.4 ORDER BY | 원하는 순서대로 정렬
 >
 >02.중복 제거 DISTINCT
@@ -41,9 +41,9 @@ draft: false
 >05.GROUP BY 및 HABVING 그리고 집계 함수
 >
 >> 05.1 GROUP BY 
->>
+>>>
 >> > 05.1.1 집계 함수
->>
+>>>
 >> 05.2 Having절
 >
 > 06.ROLLUP(), GROUPING_ID(), CUBE()함수

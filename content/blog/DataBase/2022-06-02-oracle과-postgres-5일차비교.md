@@ -463,8 +463,19 @@ draft: false
   FROM changeTBL ORI
   WHERE TGT.userID = ORI.userID
   returning *
-  ),upsert1 AS (
-  DELETE from changeTBL WHERE changeType = '회원탈퇴'
+  )
+  INSERT INTO memberTBL (userID,userName,addr)
+  SELECT 
+  userID,
+  userName,
+  addr
+  FROM changeTBL
+  WHERE NOT EXISTS (select * from upsert)
+  
+  
+  
+  WITH upsert AS (
+  DELETE from membertbl WHERE addr = '탈퇴'
   returning *
   )
   INSERT INTO memberTBL (userID,userName,addr)
@@ -473,7 +484,7 @@ draft: false
   userName,
   addr
   FROM changeTBL
-  WHERE NOT EXISTS (select * from upsert1)
+  WHERE NOT EXISTS (select * from upsert)
   
   SELECT * FROM memberTBL;
   ```
