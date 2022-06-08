@@ -1,11 +1,11 @@
 ---
-title: oracle과 postgres 5일차비교
+title: oracle과 postgres 5일차 6일차 비교
 date: 2022-06-02 08:32:00 +0900
 category: DB
 draft: false
 ---
 
-## 2022-06-02-oracle과-postgres-5일차비교
+## 2022-06-02-oracle과-postgres-5일차-6일차-비교
 
 ## 목차
 
