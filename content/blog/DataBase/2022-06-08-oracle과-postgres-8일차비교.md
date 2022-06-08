@@ -31,13 +31,13 @@ draft: false
 
   ```sql
   SELECT ASCII('A'), CHR(65), ASCIISTR('한'), UNISTR('\D55C') FROM DUAL;
-  
+
   SELECT LENGTH('한글'), LENGTH('AB'), LENGTHB('한글'), LENGTHB('AB') FROM DUAL;
-  
+
   SELECT CONCAT('이것이',' Oracle이다'), '이것이' || ' ' || 'Oracle이다'  FROM DUAL;
-  
+
   SELECT INSTR('이것이 Oracle이다. 이것도 오라클이다', '이것') FROM DUAL;
-  
+
   SELECT INSTR('이것이 Oracle이다. 이것도 오라클이다', '이것', 2) FROM DUAL;
   
   SELECT INSTRB('이것이 Oracle이다. 이것도 오라클이다', '이것', 2) FROM DUAL;
