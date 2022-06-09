@@ -20,6 +20,10 @@ draft: false
 >>02.1 LEFT/RIGHT/FULL OUTER JOIN 실습
 >>
 >>02.2 CROSS JOIN
+>>
+>>02.3 SELF JOIN
+>>
+>>02.4 UION/ UNION ALL /NOT IN / IN
 
 ## 00.사전 준비 테이블
 
@@ -577,7 +581,30 @@ SELECT U.userID, U.userName,  U.addr
   SELECT  COUNT(*) AS "데이터 개수"
      FROM HR.employees 
        CROSS JOIN HR.countries;
+  ```
+
+- **Postgres**
+
+  ```sql
+  SELECT * 
+     FROM buyTbl 
+       CROSS JOIN userTbl
+  order by userName, idNum;
   
+  SELECT * 
+     FROM buyTbl , userTbl 
+  order by userName, idNum;
+  
+  SELECT  COUNT(*) AS "데이터 개수"
+     FROM employees 
+       CROSS JOIN countries;
+  ```
+
+### 02.3 SELF JOIN
+
+- **Oracle**
+
+  ```sql
   CREATE TABLE empTbl (emp NCHAR(3), manager NCHAR(3), department NCHAR(3));
   INSERT INTO empTbl VALUES('나사장','없음','없음');
   INSERT INTO empTbl VALUES('김재무','나사장','재무부');
@@ -596,34 +623,11 @@ SELECT U.userID, U.userName,  U.addr
         INNER JOIN empTbl B
            ON A.manager = B.emp
      WHERE A.emp = '우대리';
-  
-  SELECT stdName, addr FROM stdTBL
-     UNION ALL
-  SELECT clubName, roomNo FROM clubTBL;
-  
-  SELECT userName, CONCAT(mobile1, mobile2) AS "전화번호" FROM userTbl
-     WHERE userName NOT IN ( SELECT userName FROM userTbl WHERE mobile1 IS NULL);
-  
-  SELECT userName, CONCAT(mobile1, mobile2) AS "전화번호" FROM userTbl
-     WHERE userName IN ( SELECT userName FROM userTbl WHERE mobile1 IS NULL);
   ```
 
 - **Postgres**
 
   ```sql
-  SELECT * 
-     FROM buyTbl 
-       CROSS JOIN userTbl
-  order by userName, idNum;
-  
-  SELECT * 
-     FROM buyTbl , userTbl 
-  order by userName, idNum;
-  
-  SELECT  COUNT(*) AS "데이터 개수"
-     FROM employees 
-       CROSS JOIN countries;
-  
   CREATE TABLE empTbl (emp CHAR(3), manager CHAR(3), department CHAR(3));
   INSERT INTO empTbl VALUES
    ('나사장','없음','없음')
@@ -643,7 +647,27 @@ SELECT U.userID, U.userName,  U.addr
         INNER JOIN empTbl B
            ON A.manager = B.emp
      WHERE A.emp = '우대리';
+  ```
+
+### 02.4 UION/ UNION ALL /NOT IN / IN
+
+- **Oracle**
+
+  ```sql
+  SELECT stdName, addr FROM stdTBL
+     UNION ALL
+  SELECT clubName, roomNo FROM clubTBL;
   
+  SELECT userName, CONCAT(mobile1, mobile2) AS "전화번호" FROM userTbl
+     WHERE userName NOT IN ( SELECT userName FROM userTbl WHERE mobile1 IS NULL);
+  
+  SELECT userName, CONCAT(mobile1, mobile2) AS "전화번호" FROM userTbl
+     WHERE userName IN ( SELECT userName FROM userTbl WHERE mobile1 IS NULL);
+  ```
+
+- **Postgres**
+
+  ```sql
   SELECT stdName, addr FROM stdTBL
      UNION ALL
   SELECT clubName, roomNo FROM clubTBL;
