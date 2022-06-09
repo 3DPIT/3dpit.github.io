@@ -1,6 +1,6 @@
 ---
 title: oracle과-postgres-8일차비교
-date: 2022-06-08 14:15:00
+date: 2022-06-08 14:15:00 +0900
 category: DB
 draft: false
 ---
