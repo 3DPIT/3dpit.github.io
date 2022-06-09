@@ -354,3 +354,6 @@ draft: false
   ```
 
   - pivot 없음 coalesce를 이용하여 비슷하게 구현
+
+## 06.CLOB, BLOB 데이터 타입에 대용량 데이터 입력
+
