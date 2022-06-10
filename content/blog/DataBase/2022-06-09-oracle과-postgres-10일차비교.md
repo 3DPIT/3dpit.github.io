@@ -428,32 +428,38 @@ draft: false
   ```sql
   do $$
   DECLARE
-      iNum SMALLINT ; -- SQLINES DEMO ***  증가할 변수
-      hap INT ; -- SQLINES DEMO *** 적할 변수
+      iNum SMALLINT ; -- 1에서 100까지 증가할 변수
+      hap INT ; -- 더한 값을 누적할 변수
+      my_goto_location INT; 
+      sleep  time;
   BEGIN
       iNum := 1;
       hap := 0;
+     	my_goto_location :=0;
       WHILE iNum <= 100 
       LOOP
           IF MOD(iNum, 7) = 0 THEN
               iNum := iNum + 1;
               CONTINUE;
           END IF;
-          hap := hap + iNum; -- SQLINES DEMO *** �적시킴
-          IF hap > 1000 THEN
-              GOTO  my_goto_location;
+          hap := hap + iNum; -- hap에 iNum를 누적시킴
+          IF hap > 1000 then
+         		my_goto_location :=1;
           END IF;
-          iNum := iNum + 1; -- SQLINES DEMO *** ��킴
+          iNum := iNum + 1; -- iNum을 1 증가시킴
       END LOOP;
-      << my_goto_location >>
-      RAISE NOTICE '%',hap;
-  END ;
-  
-  BEGIN
-      DBMS_LOCK.SLEEP(5); 
-      RAISE NOTICE '%','5초간 멈춘후 진행되었음';
+     	if my_goto_location = 0 then
+     		RAISE NOTICE '%',hap;
+     	end if;
+     	if my_goto_location = 1 then
+     		perform pg_sleep(5);
+     		RAISE NOTICE '%','5초간 멈춘후 진행되었음';
+     	end if;
   END $$;
   ```
+  
+  - goto 없어서 변수 처리해서 if else로 조건 처리 진행
+  - DBMS_LOCK -> perform pg_sleep으로 대체
 
 ### 01.5 예외처리
 
@@ -475,25 +481,25 @@ draft: false
   END ;
   ```
 
-- **Postgres** | 안됨
+- **Postgres** 
 
   ```sql
   do $$
   DECLARE
       v_userName userTBL.userName%TYPE; 
   BEGIN
-      -- SQLINES LICENSE FOR EVALUATION USE ONLY
-      SELECT userName INTO v_userName FROM userTBL 
-              WHERE userName LIKE ('김%'); -- SQLINES DEMO *** 호 2명
+      SELECT userName INTO strict v_userName FROM userTBL 
+              WHERE userName LIKE ('김%'); -- 김범수, 김경호 2명
       RAISE NOTICE '%', '김씨 고객 이름은 ' ||v_userName|| '입니다.' ;
-      EXCEPTION
+     EXCEPTION
           WHEN NO_DATA_FOUND THEN
               RAISE NOTICE '%', '김씨 고객이 없습니다.' ;
-          WHEN userException THEN
-              RAISE NOTICE '%', '김씨 고객이 너무 많네요.' ;            
+          WHEN TOO_MANY_ROWS THEN
+              RAISE NOTICE '%', '김씨 고객이 너무 많네요.' ;  
   END $$;
-  
   ```
+  
+  - INTO strict 이렇게 해야 제약 조건이 걸림
 
 ### 01.6 사용자 정의 예의 처리
 
@@ -551,47 +557,20 @@ draft: false
   DECLARE
       v_userName userTBL.userName%TYPE; 
   BEGIN
-      -- SQLINES LICENSE FOR EVALUATION USE ONLY
-      SELECT userName INTO v_userName FROM userTBL 
-              WHERE userName LIKE ('김%'); -- SQLINES DEMO *** 호 2명
+      SELECT userName INTO strict v_userName FROM userTBL 
+              WHERE userName LIKE ('김%'); -- 김범수, 김경호 2명
       RAISE NOTICE '%', '김씨 고객 이름은 ' ||v_userName|| '입니다.' ;
-      EXCEPTION
+     EXCEPTION
           WHEN NO_DATA_FOUND THEN
               RAISE NOTICE '%', '김씨 고객이 없습니다.' ;
-          WHEN userException THEN
-              RAISE NOTICE '%', '김씨 고객이 너무 많네요.' ;            
+          WHEN sqlstate 'P0003' THEN
+              RAISE NOTICE '%', '김씨 고객이 너무 많네요.' ;  
   END $$;
-  
-  ---
-  
-  do $$
-  DECLARE
-      v_userName userTBL.userName%TYPE; 
-  BEGIN
-      v_userName := '무명씨';
-      DELETE FROM userTBL WHERE userName=v_userName; 
-      IF NOT FOUND THEN
-          RAISE zeroDelete;
-      END IF;
-      EXCEPTION
-          WHEN zeroDelete THEN
-              RAISE NOTICE '%', v_userName || ' 데이터 없음. 확인 바래요^^' ;            
-  END $$;
-  
-  ---
-  
-  do $$
-  DECLARE
-      v_userName userTBL.userName%TYPE; 
-  BEGIN
-      v_userName := '무명씨';
-      DELETE FROM userTBL WHERE userName=v_userName; 
-      IF  NOT FOUND  THEN
-          RAISE_APPLICATION_ERROR(-20001, '데이터 없음 오류 발생!!');
-      END IF;
-  END $$;
-  
   ```
+  
+  - 사용자 변수 선언 대신 sqlstate 'P0003' 이런식으로 사용가능
+  - zeroDelete에대한 에러 없음
+  - RAISE_APPLICATION_ERROR 없음
 
 ### 01.7 동적 SQL
 
@@ -625,6 +604,9 @@ draft: false
       DBMS_OUTPUT.PUT_LINE ('테이블 생성됨');
   END;
   ```
+
+  - 이상하게 원래 제대로 동작해야하지만 v_month 때문에 제대로 동작하지 않음
+  - 뺴고 하면 제대로됨
 
 - **Postgres**
 
