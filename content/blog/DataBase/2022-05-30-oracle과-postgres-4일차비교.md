@@ -7,6 +7,28 @@ draft: false
 
 ## 2022-05-30-oracle과-postgres-4일차비교
 
+## 목차
+
+>01.SELECT와 FROM
+>
+>02.스키마이름과 철자 기억안나는 경우
+>
+>03.sqlDB와 앞으로 사용한 테이블 생성
+>
+>04.테이블 데이터 입력
+>
+>05.WHERE
+>
+>06.Order by
+>
+>07.ROWNUM
+>
+>08.테이블 복사
+>
+>09.GROUP BY 및 HAVING 그리고 집계함수
+>
+>10.ROOLUP(), GROUPING_ID(), CUBE() 함수
+
 ## 01.SELECT와 FROM
 
 - **Oracle**
@@ -25,9 +47,9 @@ draft: false
 
   ```sql
   SELECT * FROM employees;
-
+  
   SELECT department_name FROM departments; -- 필요한 열만 출력
-
+  
   SELECT department_id,department_name FROM departments; -- 여러개 열 출력
   ```
 
@@ -47,9 +69,9 @@ draft: false
 
   ```sql
   SELECT * FROM pg_catalog.pg_namespace;
-
+  
   select tablename from pg_tables; -- 전체 테이블 조회
-
+  
   SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_CATALOG = 'postgres' AND TABLE_NAME = 'departments' ORDER BY ORDINAL_POSITION;
   ```
 
@@ -99,7 +121,7 @@ draft: false
   create database sqlDB with owner sqlDB;
   create schema sqlDB authorization sqlDB;
   set search_path to "$user", sqlDB;
-
+  
   CREATE TABLE userTBL -- 회원 테이블
   (
   userID CHAR(8) NOT NULL PRIMARY KEY, --사용자 아이디(PK)
@@ -111,9 +133,9 @@ draft: false
   height numeric,
   mDate DATE --회원가입일
   );
-
+  
   CREATE SEQUENCE seq_idNum START 1;
-
+  
   CREATE TABLE buyTBL --회원 구매 테이블
   (
   idNum numeric NOT NULL PRIMARY KEY DEFAULT nextval('seq_idNum'), --순번(PK)
