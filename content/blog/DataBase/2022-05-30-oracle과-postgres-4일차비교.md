@@ -434,12 +434,12 @@ draft: false
   
   DROP TABLE cubeTBL;
   CREATE TABLE cubeTBL(prodName NCHAR(3), color NCHAR(2), amount INT);
-  
+
   INSERT INTO cubeTBL VALUES('컴퓨터', '검정', 11);
   INSERT INTO cubeTBL VALUES('컴퓨터', '파랑', 22);
   INSERT INTO cubeTBL VALUES('모니터', '검정', 33);
   INSERT INTO cubeTBL VALUES('모니터', '파랑', 44);
-  
+
   SELECT prodName, color, SUM(amount) AS "수량합계"
   	FROM cubeTBL
   	GROUP BY CUBE(color, prodName)
@@ -452,7 +452,7 @@ draft: false
   SELECT idNum, groupName, SUM(price*amount) AS "비용"
   	FROM buyTBL
   	GROUP BY ROLLUP (groupName, idNum);
-  
+
   SELECT groupName, SUM(price*amount) AS "비용"
   	FROM buyTBL
   	GROUP BY ROLLUP (groupName);
@@ -464,12 +464,12 @@ draft: false
   order by groupName, 비용 ASC;
 
   CREATE TABLE cubeTBL(prodName NCHAR(3), color NCHAR(2), amount INT);
-  
+
   INSERT INTO cubeTBL VALUES('컴퓨터', '검정', 11);
   INSERT INTO cubeTBL VALUES('컴퓨터', '파랑', 22);
   INSERT INTO cubeTBL VALUES('모니터', '검정', 33);
   INSERT INTO cubeTBL VALUES('모니터', '파랑', 44);
-  
+
   SELECT prodName, color, SUM(amount) AS "수량합계"
   	FROM cubeTBL
   	GROUP BY CUBE(color, prodName)
