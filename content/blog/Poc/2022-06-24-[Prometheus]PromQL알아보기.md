@@ -1,5 +1,5 @@
 ---
-title: [Prometheus]PromQL알아보기
+title: Prometheus PromQL알아보기
 date: 2022-06-24 14:35:00 +0900
 category: PoC
 draft: false

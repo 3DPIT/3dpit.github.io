@@ -1,5 +1,5 @@
 ---
-title: [Prometheus]서비스 디스커버리 설정하기
+title: Prometheus 서비스 디스커버리 설정하기
 date: 2022-06-23 14:12:00 +0900
 category: PoC
 draft: false
