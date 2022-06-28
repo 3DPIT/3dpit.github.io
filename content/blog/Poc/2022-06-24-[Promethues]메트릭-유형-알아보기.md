@@ -1,5 +1,5 @@
 ---
-title: [Promethues]메트릭 유형 알아보기
+title: Prometheus 메트릭 유형 알아보기
 date: 2022-06-24 10:13:00 +0900
 category: PoC
 draft: false

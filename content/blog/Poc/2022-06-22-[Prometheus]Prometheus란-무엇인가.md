@@ -1,5 +1,5 @@
 ---
-title: [Prometheus]Prometheus란 무엇인가
+title: Prometheus Prometheus란 무엇인가
 date: 2022-06-22 10:55:00 +0900
 category: PoC
 draft: false

@@ -1,5 +1,5 @@
 ---
-title: [Prometheus]Alertmanager 알아보기
+title: Prometheus Alertmanager 알아보기
 date: 2022-06-27 09:21:00 +0900
 category: PoC
 draft: false
