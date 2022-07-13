@@ -107,6 +107,54 @@ log_filename='postgresql-%Y-%m-%d_%H%M%S.log'
 
 - 두개의 폴더를 `mount-postgres\data` 위치에 만든다.
 
+```sh
+docker exec -it postgres_archive bin/bash
+
+pg_basebackup -U postgres -p 5432 -D /var/lib/postgresql/data/backup
+```
+
+- 다른 백업 폴더를 생성해서 그곳에 넣어놓기
+
+  - 현재 백업 자체 데이터는 테이블 하나있음
+
+  - 우선 테스트를 위해 테이블 두개 더 생성해놓고 복원해보기
+
+    ![image-20220713103651806](../../assets/img/post/2022-07-12-PostgreSQL-백업/image-20220713103651806.png)
+
+- 백업이 제대로 된경우 백업 라벨이 생성됨
+
+  ![image-20220713103501066](../../assets/img/post/2022-07-12-PostgreSQL-백업/image-20220713103501066.png)
+
+## 05.PostgreSQL 복원
+
+- 원본 디렉토리에 recovery.signal 파일 생성
+
+  ![image-20220713103925162](../../assets/img/post/2022-07-12-PostgreSQL-백업/image-20220713103925162.png)
+
+- before
+
+  ![image-20220713103136319](../../assets/img/post/2022-07-12-PostgreSQL-백업/image-20220713103136319.png)
+
+- after
+
+  ```yml
+  restore_command = 'cp /var/lib/postgresql/data/arch/%f %p'
+  ```
+
+  - 이때 여러가지 방법이 있지만
+
+    - 백업한것을 그대로 원본 쪽에 이동시켜도 가능하다.
+
+    
+
+    
+
+  
+
+  
+
+
+
 
 
 
