@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key = "app1" Color =" Blue"/>
     </Application.Resources>
 </Application>

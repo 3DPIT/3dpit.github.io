@@ -6,21 +6,19 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <RelativePanel BorderBrush="Gray" BorderThickness="1">
-        <Rectangle x:Name="RedRect" Fill="Red" Height="44" Width="44"/>
-        <Rectangle x:Name="BlueRect" Fill="Blue"
-               Height="44" Width="88"
-               RelativePanel.RightOf="RedRect" />
+    <Window.Resources>
+        <Style  TargetType="{x:Type Wpf.ControlLibrary. libButton}" x:Key ="Hi">
+            <Setter Property="Background" Value="#FFFF3A00"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel.Resources>
+            <SolidColorBrush x:Key="background" Color="Gray"/>
+        </StackPanel.Resources>
 
-        <Rectangle x:Name="GreenRect" Fill="Green" 
-               Height="44"
-               RelativePanel.Below="RedRect" 
-               RelativePanel.AlignLeftWith="RedRect" 
-               RelativePanel.AlignRightWith="BlueRect"/>
-        <Rectangle Fill="Orange"
-               RelativePanel.Below="GreenRect" 
-               RelativePanel.AlignLeftWith="BlueRect" 
-               RelativePanel.AlignRightWithPanel="True"
-               RelativePanel.AlignBottomWithPanel="True"/>
-    </RelativePanel>
+        <Button Background="{StaticResource background}">Button 1</Button>
+        <Button Background="{StaticResource app1}">Button 2</Button>
+        <Button Style="{StaticResource Hi}">Button 3</Button>
+    </StackPanel> 
 </Window>

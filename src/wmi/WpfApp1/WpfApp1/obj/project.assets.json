@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "WpfApp2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/WpfApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WpfApp2.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "WpfApp2/1.0.0": {
+      "type": "project",
+      "path": "../WpfApp2/WpfApp2.csproj",
+      "msbuildProject": "../WpfApp2/WpfApp2.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "WpfApp2 >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\km.park\\.nuget\\packages\\": {},
@@ -39,7 +61,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\blogGatsby\\3dpit.github.io\\src\\wmi\\WpfApp1\\WpfApp2\\WpfApp2.csproj": {
+              "projectPath": "D:\\blogGatsby\\3dpit.github.io\\src\\wmi\\WpfApp1\\WpfApp2\\WpfApp2.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

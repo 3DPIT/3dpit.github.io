@@ -29,7 +29,7 @@ draft: false
 
     ```xaml
     <Window.Resources>
-    	<Style TargetType ={x.Type Button} x.Key ="Hi">
+    	<Style TargetType ={x:Type Button} x:Key ="Hi">
         	<Setter Property="Background" Value="Blue"/>
         </Style>
     </Window.Resources>
@@ -65,7 +65,7 @@ draft: false
     - 그 오류 해결하는 법
       - 패널 같은 것을 하나 만들면됨
 
-## 02.코드로 xaml로 만들기
+### 01.2 코드로 xaml로 만들기
 
 ```xaml
 <StackPanel Name ="sp">
@@ -78,17 +78,103 @@ draft: false
 </StackPanel>
 ```
 
-## 03.exe 이외에 있는곳
+### 01.3 exe 이외에 있는곳
 
 - 이미지 부분 넣는것 이외의 것
 
-## 04.라이브러리
+### 01.4 라이브러리
 
 - 라이브러리?
   - 특정 기능을 가져다 씀
   - 그것의 집합 클래스 라이브러리
   - 프로젝트 이외의 것에 재사용하고 싶음
 
-## 05.과제
+### 01.5 과제
 
 - 다른곳에서도 빨간 것
+
+## 02.공부내용
+
+### 02.1 Resources적용해보기
+
+![image-20220714160737757](../../assets/img/post/2022-07-14-WPF교육-Resources/image-20220714160737757.png)
+
+```xaml
+<Window.Resources>
+    <Style  TargetType="{x:Type Button}" x:Key ="Hi">
+        <Setter Property="Background" Value="#FFFF3A00"/>
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+</Window.Resources>
+<StackPanel>
+    <StackPanel.Resources>
+        <SolidColorBrush x:Key="background" Color="Blue"/>
+    </StackPanel.Resources>
+
+    <Button Background="{StaticResource background}">Button 1</Button>
+    <Button Background="{StaticResource background}">Button 2</Button>
+    <Button Style="{StaticResource Hi}">Button 3</Button>
+</StackPanel> 
+```
+
+-  Style로 적용하는법 , Background로 적용하는 법
+  - Window.Resources와 Stackpanel.Resources를 쓸 수 있음
+
+### 02.2 cs코드 xmal로 변경해보기
+
+![image-20220714163719523](../../assets/img/post/2022-07-14-WPF교육-Resources/image-20220714163719523.png)
+
+- xaml.cs
+
+  ```csharp
+  public partial class MainWindow : Window
+  {
+      public MainWindow()
+      {
+          InitializeComponent();
+  
+          SolidColorBrush silverBrush = Brushes.Silver;
+  
+          App application = (App)Application.Current;
+  
+          application.Resources.Add("background", silverBrush);
+  
+          btn1.Background = (SolidColorBrush)btn1.FindResource("background");
+      }
+  }
+
+- xaml로 변경
+
+  - App.xaml
+
+    ```xaml
+    <Application.Resources>
+        <SolidColorBrush x:Key = "app1" Color =" Blue"/>
+    </Application.Resources>
+    ```
+
+  - MainWindow.xaml
+
+    ```xaml
+    <Window.Resources>
+        <Style  TargetType="{x:Type Button}" x:Key ="Hi">
+            <Setter Property="Background" Value="#FFFF3A00"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel.Resources>
+            <SolidColorBrush x:Key="background" Color="Gray"/>
+        </StackPanel.Resources>
+    
+        <Button Background="{StaticResource background}">Button 1</Button>
+        <Button Background="{StaticResource app1}">Button 2</Button>
+        <Button Style="{StaticResource Hi}">Button 3</Button>
+    </StackPanel> 
+    ```
+
+  ## 03.과제
+
+  
+
+  
