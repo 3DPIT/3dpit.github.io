@@ -650,5 +650,7 @@ draft: false
 - **stack panel, wrap, dock panel, uniform, grid.... 다른것 없는지 확인 해보기**
 
   - border
+    - 패널은 아님
+  - relative panel
   - items control 
-  - ...
+  - VirtualizingPanel 

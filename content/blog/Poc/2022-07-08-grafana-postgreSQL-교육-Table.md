@@ -13,7 +13,9 @@ draft: true
 >
 >>01.1 Table 옵션 지정하기
 >>
->>01.2 피봇테이블 형식 적용하는법 정리하기
+>>> 각 범위 별 색상 지정
+>>>
+>>> 링크 걸어서 연결하는 테이블
 >
 >02.실제 구현된 대시보드 확인해보기
 >
@@ -21,11 +23,60 @@ draft: true
 
 ## 01.쿼리를 이용한 Table 생성하기
 
+```sql
+create table table_notime (
+	url text,
+	name text,
+	people int
+)
+
+insert into table_notime values
+('https://www.naver.com','네이버',1999),
+('https://www.kakaocorp.com/page/','카카오',12000);
+
+create table table_time (
+    dates timestamp,
+	url text,
+	name text,
+	people int
+)
+
+insert into table_time values
+('2022-08-14','https://www.naver.com','네이버',1999),
+('2022-08-15','https://www.kakaocorp.com/page/','카카오',12000);
+```
+
 ### 01.1 Table 옵션 지정하기
 
 - Cell display mode
 
   ![image-20220708162643488](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220708162643488.png)
+
+  - Color text의 경우 텍스트에 컬러가 지정됨
+
+    ![image-20220714145906534](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714145906534.png)
+
+  - Color background의 경우 전체 바탕에 색을 지정
+
+    - gradient
+
+      ![image-20220714145931093](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714145931093.png)
+
+    - solid
+
+      ![image-20220714145946653](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714145946653.png)
+
+  - Gradient gauge 그라디언트 색상이 적용되는 게이지가 나옴
+
+    ![image-20220714150000781](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150000781.png)
+
+  - LCD gauage LCD모양의 게이지가 나옴
+
+    ![image-20220714150012356](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150012356.png)
+
+  - Basic gauge 기본 게이지가 나옴
+
+    ![image-20220714150024005](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150024005.png)
 
 - data links
 
@@ -33,16 +84,40 @@ draft: true
 
 - Value mappings
   - 각 원하는 부분에 색지정하거나
+
 - Thresholds이용해서 색지정하는것 까지 해보기
 
-### 01.2 피봇테이블 형식 적용하는법 정리하기
+#### 각 범위 별 색상 지정
 
-- 피봇테이블 정리부분 따라해보기
-- 이때는 좀 쿼리문 위주의 실습으로 진행할것
-  - 왜 ? 이렇게 피봇으로 표현하는지 그리고 왜 같은 이름인것을 지우고 하나로 합치는 과정이 필요한지
-  - 그리고 어떻게 해야 저렇게 제대로 피봇을 표현할 수 있는지 
+![image-20220714142431325](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714142431325.png)
 
-- 그리고 피봇방식에서 분류하는 것 cube 이런것에 대해서 설명 후 구현 진행
+- 위와 같이 가능하다	
+
+  ![image-20220714142531051](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714142531051.png)
+
+#### 링크 걸어서 연결하는 테이블
+
+![image-20220714145234825](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714145234825.png)
+
+- 위와 같이 해당 링크를 name에 연결시켜서 서핑이라는 단어를 누르면 링크가 열리는 형식으로 구현할 것
+
+![image-20220714150147396](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150147396.png)
+
+- Add link 클릭
+
+![image-20220714150332202](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150332202.png)
+
+![image-20220714142459555](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714142459555.png)
+
+- 클릭시 테이블에서 링크로 연결이 된다.
+
+- 그리고 필요 없는 부분인 url를 숨겨준다.
+
+  ![image-20220714145330806](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714145330806.png)
+
+- 그렇게 되면 아래와 같은 결과를 가진 테이블을 생성 할 수 있음
+
+  ![image-20220714142522923](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714142522923.png)
 
 ## 02.실제 구현된 대시보드 확인해보기
 
@@ -60,9 +135,12 @@ draft: true
 
 ## 03.개인대시보드에 테이블 적용해보기
 
-- 개인대시보드에 적용할것
-  - 운동기록
-  - 각 운동별 전체 몇분, 몇 칼로리, 몇번 했는지에 대한 것 유무를 적용할것
-  - 그리고 각 크기에 맞게 색깔 지정해보기
-- 그리고 뭔가 피봇테이블 적용할 수 있을만한것에 대해서 피봇 적용해보기
+![image-20220714150520836](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150520836.png)
 
+![image-20220714150601377](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150601377.png)
+
+- 위의 대시보드 cell 색상 지정 과 두개의 테이블을 한 화면에서 전환해서 볼 수 있음
+
+![image-20220714150811469](../../assets/img/post/2022-07-08-grafana-postgreSQL-교육-Table/image-20220714150811469.png)
+
+- 운동 관련된 영상을 데이터 링크를 걸어서 연결해놓은 테이블
