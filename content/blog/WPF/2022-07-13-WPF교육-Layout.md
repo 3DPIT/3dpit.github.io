@@ -642,10 +642,15 @@ draft: false
 
   - **아래에서 위로하는 것**
     - 없음
+  - 스택에서 마지막부분 fill되는것 있는지
+    - 없다라고 결론
+    - Top, top 구분 dock panel을 사용해도 되지 않는지
+    - 그냥 그럴필요 없이 
 
 - **Canvas 사용하는 곳 찾아보기**
 
   - 단지 그냥 정말 캔버스 같은 느낌으로 자율성 있게 사용
+  - 
 
 - **stack panel, wrap, dock panel, uniform, grid.... 다른것 없는지 확인 해보기**
 
@@ -653,4 +658,13 @@ draft: false
     - 패널은 아님
   - relative panel
   - items control 
+<<<<<<< HEAD
   - VirtualizingPanel 
+=======
+  - uwp는 안해도됨
+  
+- 비주얼 스튜디오 업그레이드 
+
+  - 교육기간에는 못하지만
+    - MAUI를 하기 위해서 만들 예정임
+>>>>>>> 9eb64c05888683ce9269fc374b220f1079d88a1c

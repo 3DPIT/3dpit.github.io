@@ -81,6 +81,7 @@ insert into table_time values
 - data links
 
   - 이부분 하려면 url 담긴 table 생성 필요함
+  - ${__data.fields[0]}
 
 - Value mappings
   - 각 원하는 부분에 색지정하거나
