@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WpfApp1\WpfApp1.csproj" />
+    <ProjectReference Include="..\WpfApp2\WpfApp2.csproj" />
+  </ItemGroup>
+
 </Project>
