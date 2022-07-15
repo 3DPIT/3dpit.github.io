@@ -61,3 +61,13 @@ namespace WMITest
 
     }
 }
+
+
+// 아큐먼트
+// 로그
+//      - Text
+//      - Json : ?
+// 테스트 서비스
+//      - MetricBeat
+//      - 서비스?
+

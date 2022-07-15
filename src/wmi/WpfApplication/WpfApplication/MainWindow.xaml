@@ -6,20 +6,9 @@
         xmlns:local="clr-namespace:WpfApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <Style  TargetType="{x:Type Button}" x:Key ="Hi">
-            <Setter Property="Background" Value="#FFFF3A00"/>
-            <Setter Property="FontSize" Value="30"/>
-        </Style>
-    </Window.Resources>
-    <StackPanel>
-        <StackPanel.Resources>
-            <SolidColorBrush x:Key="background" Color="Gray"/>
-        </StackPanel.Resources>
-        <Button Content="test" Background="{StaticResource app1}"></Button>
 
-        <Button Background="{StaticResource background}">Button 1</Button>
+    <StackPanel>
+
         <Button Background="{StaticResource app1}">Button 2</Button>
-        <Button Style="{StaticResource Hi}">Button 3</Button>
     </StackPanel>
 </Window>
