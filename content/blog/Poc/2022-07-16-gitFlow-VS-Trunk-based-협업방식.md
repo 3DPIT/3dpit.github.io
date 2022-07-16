@@ -15,7 +15,7 @@ draft: true
 >
 >>  01.1 Git Flow란? 
 >>
->>  \01.2 장단점
+>>  01.2 장단점
 >
 >02.Trunk-based
 >
