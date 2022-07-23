@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kill_progream", "kill_progream\kill_progream.csproj", "{013AC946-4EC4-4C48-A878-C42A2F01C790}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kill_progream_unitTest", "kill_progream_unitTest\kill_progream_unitTest.csproj", "{B235780C-F9F3-43CB-8A15-16D23881EFCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{013AC946-4EC4-4C48-A878-C42A2F01C790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{013AC946-4EC4-4C48-A878-C42A2F01C790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{013AC946-4EC4-4C48-A878-C42A2F01C790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{013AC946-4EC4-4C48-A878-C42A2F01C790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B235780C-F9F3-43CB-8A15-16D23881EFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B235780C-F9F3-43CB-8A15-16D23881EFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B235780C-F9F3-43CB-8A15-16D23881EFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B235780C-F9F3-43CB-8A15-16D23881EFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6598748-B3F8-41BB-9657-35CB2C6EF37C}
+	EndGlobalSection
+EndGlobal

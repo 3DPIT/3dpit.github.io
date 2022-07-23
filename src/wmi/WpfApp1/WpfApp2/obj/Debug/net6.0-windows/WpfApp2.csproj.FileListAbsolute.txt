@@ -1,0 +1,5 @@
+D:\blogGatsby\3dpit.github.io\src\wmi\WpfApp1\WpfApp2\obj\Debug\net6.0-windows\WpfApp2.csproj.AssemblyReference.cache
+D:\blogGatsby\3dpit.github.io\src\wmi\WpfApp1\WpfApp2\obj\Debug\net6.0-windows\MainWindow.g.cs
+D:\blogGatsby\3dpit.github.io\src\wmi\WpfApp1\WpfApp2\obj\Debug\net6.0-windows\App.g.cs
+D:\blogGatsby\3dpit.github.io\src\wmi\WpfApp1\WpfApp2\obj\Debug\net6.0-windows\WpfApp2_MarkupCompile.cache
+D:\blogGatsby\3dpit.github.io\src\wmi\WpfApp1\WpfApp2\obj\Debug\net6.0-windows\WpfApp2_MarkupCompile.lref
