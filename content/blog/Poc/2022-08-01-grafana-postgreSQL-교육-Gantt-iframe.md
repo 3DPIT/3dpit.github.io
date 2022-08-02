@@ -5,9 +5,27 @@ category: PoC
 draft: true
 ---
 
-## 2022-08-01-grafana-postgreSQL-교육-Gantt
+## 2022-08-01-grafana-postgreSQL-교육-Gantt-iframe
 
 ## 목차
+
+> 01.Gantt의  이해 및 간단한 실습
+>
+> > 01.1 테이블 생성 및 데이터 추가
+> >
+> > 01.2 실습
+> >
+> > 01.3 iframe 적용하기
+>
+> 02.Gantt 실제 사용사례
+>
+> 03.나만의  Gantt와 iframe 차트 만들기
+>
+> > 03.1 Gantt
+> >
+> > > 옵션
+> >
+> > 03.2 iframe
 
 ## 01.Gantt의  이해 및 간단한 실습
 
@@ -56,11 +74,21 @@ insert into iphone values
 ('2019-09-20','2020-10-13','2022-08-03','아이폰 11프로맥스','ios 13.0','ios 16.0',2,2,1449);
 ```
 
+### 01.2 실습
+
+![image-20220802152824010](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802152824010.png)
+
 ```sql
 SELECT 
 *
 FROM iphone
 ```
+
+- 현재는 전체를 넣었지만 최소 조건의 경우 시간데이터 2개, 문자열 데이터 1개를 가지고 있어야 Gantt차트를 그릴 수 있음
+
+### 01.3 iframe 적용하기
+
+![image-20220802153312494](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802153312494.png)
 
 ```html
 <iframe id="Example2"
@@ -71,17 +99,43 @@ FROM iphone
 </iframe>
 ```
 
+![image-20220802153326191](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802153326191.png)
+
 ```html
-<iframe width="1000" height="300" src="https://3dpit.github.io/" name="test" id="test" frameborder="1" scrolling="yes" align="left">이 브라우저는 iframe을 지원하지 않습니다</iframe>
+<iframe width="1000" height="300" src="https://tech.kakao.com/blog/" name="test" id="test" frameborder="1" scrolling="yes" align="left">이 브라우저는 iframe을 지원하지 않습니다</iframe>
 ```
+
+![image-20220802153350125](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802153350125.png)
 
 ```html
 <iframe width="300" height="300"  src="https://www.youtube.com/embed/jaxUumCpt_E"
 sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
 ```
 
+- iframe의 경우 사실상 사이트 마다 되는것이 있고 안되는 것이 있음 이점은 주의해서 쓰면되고 위에처럼 그냥 인터넷 창을 보여주는 것도 쓸수 있지만
+  - html이기때문에 html이랑 css를 이용해서 어느정도 다양하게 꾸며서 사용할 수 있음 
+
 ## 02.Gantt 실제 사용사례
 
+- 마일스톤 일정
+
+  - 단점 데이터가  많은 경우 아래와 같이 나오니 갯수를 조절해서 쓰자
+
+    ![image-20220802153136760](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802153136760.png)
+
+## 03.나만의  Gantt와 iframe 차트 만들기
+
+### 03.1 Gantt
+
+![image-20220802153930611](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802153930611.png)
+
+#### 옵션
+
+![image-20220802154001284](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802154001284.png)
+
+### 03.2 iframe
 
 
-## 03.나만의  Gantt 차트 만들기
+
+![image-20220802154509353](../../assets/img/post/2022-08-01-grafana-postgreSQL-교육-Gantt-iframe/image-20220802154509353.png)
+
