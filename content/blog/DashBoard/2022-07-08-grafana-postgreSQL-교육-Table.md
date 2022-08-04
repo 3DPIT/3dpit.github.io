@@ -1,8 +1,8 @@
 ---
 title: grafana postgreSQL 교육 Table
 date: 2022-07-08 16:20:00 +0900
-category: PoC
-draft: true
+category: DashBoard
+draft: false
 ---
 
 ## 2022-07-08-grafana-postgreSQL-교육-Table
@@ -12,9 +12,9 @@ draft: true
 >01.쿼리를 이용한 Table 생성하기
 >
 >>01.1 Table 옵션 지정하기
->>
->>> 각 범위 별 색상 지정
 >>>
+>>> 각 범위 별 색상 지정
+>>>>>
 >>> 링크 걸어서 연결하는 테이블
 >
 >02.실제 구현된 대시보드 확인해보기

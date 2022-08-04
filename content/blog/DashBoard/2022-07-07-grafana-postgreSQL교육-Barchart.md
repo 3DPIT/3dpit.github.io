@@ -1,8 +1,8 @@
 ---
 title: grafana postgreSQL교육 Barchart
 date: 2022-07-07 11:42:00 +0900
-category: PoC
-draft: true
+category: DashBoard
+draft: false
 ---
 
 ## 2022-07-07-grafana-postgreSQL교육-Barchart

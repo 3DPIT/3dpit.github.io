@@ -1,7 +1,7 @@
 ---
 title: grafana그래프 superset으로 적용해보기
 date: 2022-05-12 09:16:00 +0900
-category: PoC
+category: DashBoard
 draft: false
 ---
 
@@ -20,37 +20,37 @@ draft: false
 >01.일별 마일스톤 개수 (상태)
 >
 >>01.1 Grafana
->>
+>>>
 >>01.2  Superset
 >
 >02.기대 진척률
 >
 >>02.1 Grafana
->>
+>>>
 >>02.2 Superset
 >
 >03.마일스톤 개수
 >
 >>03.1 Grafana
->>
+>>>
 >>03.2 Superset
 >
 >04.마일스톤 범주
 >
 >>04.1 Grafana
->>
+>>>
 >>04.2 Superset
 >
 >05.마일스톤 기간 요약
 >
 >>05.1 Grafana
->>
+>>>
 >>05.2 Superset
 >
 >06.최신마일스톤 데이터 테이블
 >
 >>06.1 Grafana
->>
+>>>
 >>06.2 Superset 
 >
 >07.필터 세그먼트 적용해보기

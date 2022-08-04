@@ -1,7 +1,7 @@
 ---
 title: Prometheus Alertmanager 알아보기
 date: 2022-06-27 09:21:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 
@@ -24,7 +24,7 @@ draft: false
 >06.알람매니저설치와 설정
 >
 >>06.1 api를 통해 받는 것 확인
->>
+>>>
 >>06.2 inhibit_rules 설정
 >
 

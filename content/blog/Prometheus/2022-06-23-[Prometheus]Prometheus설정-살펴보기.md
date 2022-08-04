@@ -1,7 +1,7 @@
 ---
 title: Prometheus Prometheus설정 살펴보기
 date: 2022-06-23 08:34:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Prometheus Push GW알아보기
 date: 2022-06-24 15:25:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 

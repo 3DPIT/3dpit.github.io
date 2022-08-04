@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL 백업
 date: 2022-07-12 09:14:00 +0900
-category: PoC
+category: DashBoard
 draft: false
 ---
 
@@ -9,7 +9,25 @@ draft: false
 
 ## 목차
 
-
+>01.PostgreSQL 아카이브 모드란?
+>
+>02.PostgreSQL.conf 파라미터에 대해서 알아보기
+>
+>>02.1 wal_level (enum)
+>>>
+>>02.2 archive_mode (boolean)
+>>>
+>>02.3 archive_command (string)
+>>>
+>>02.4 archive_timeout (integer)
+>
+>03.실제 아카이브 적용하기
+>
+>> 03.1 postgresql.conf 설정하기
+>
+>04.PostgreSQL 백업
+>
+>05.PostgreSQL 복원
 
 ##  01.PostgreSQL 아카이브 모드란?
 

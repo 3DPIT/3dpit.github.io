@@ -1,7 +1,7 @@
 ---
 title: grafana table merge
 date: 2022-07-06 16:18:00 +0900
-category: PoC
+category: DashBoard
 draft: false
 ---
 
@@ -12,7 +12,7 @@ draft: false
 >01.table merge 적용
 >
 >>01.1 merge부분 조사 결과
->>
+>>>
 >>01.2 ROW_NUMBER() OVER() 적용
 >
 

@@ -1,7 +1,7 @@
 ---
 title: Grafana Timedate확인
 date: 2022-07-06 13:39:00 +0900
-category: PoC
+category: DashBoard
 draft: false
 ---
 

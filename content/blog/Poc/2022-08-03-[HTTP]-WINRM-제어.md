@@ -1,5 +1,5 @@
 ---
-title: [HTTP] Windows WINRM 제어
+title: [HTTP] WINRM 제어
 date: 2022-08-03 13:34:00 +0900
 category: PoC
 draft: false
@@ -34,32 +34,32 @@ draft: false
 > # Linux
 > # 간단한 명령_self
 > ## 직접 대화형으로 들어가는 경우
-> Enter-PSSession -ComputerName 192.168.100.116
+> Enter-PSSession -ComputerName 127.0.0.1
 > 
 > ## 바로 명령으로 동작시키는 경우
-> Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { dir 'C:\' }
+> Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { dir 'C:\' }
 > 
 > # 간단한 명령_remote
 > ## 직접 대화형으로 들어가는 경우
-> Enter-PSSession -ComputerName 192.168.100.116 -Authentication Negotiate -Credential $cred
+> Enter-PSSession -ComputerName 127.0.0.1 -Authentication Negotiate -Credential $cred
 > 
 > ## 바로 명령으로 동작시키는 경우
-> Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { dir 'C:\' } -Authentication Negotiate -Credential $cred
+> Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { dir 'C:\' } -Authentication Negotiate -Credential $cred
 > 
 > # 인증까지 하는 명령
 > $sessionoptions = (New-PSSessionOption -SkipCACheck -SkipCNCheck) 
 > $securePassword = ConvertTo-SecureString -AsPlainText -Force password
 > $cred = New-Object System.Management.Automation.PSCredential administrator, $securePassword 
-> Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential $cred -SessionOption $sessionoptions
+> Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential $cred -SessionOption $sessionoptions
 > 
 > # pwsh 입력 별개
 > pwsh
 > $sessionoptions = (New-PSSessionOption -SkipCACheck -SkipCNCheck) '
 > $securePassword = ConvertTo-SecureString -AsPlainText -Force password
 > $cred = (New-Object System.Management.Automation.PSCredential km.park,  ConvertTo-SecureString -AsPlainText -Force mirero)
-> Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
+> Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
 > # pwsh 입력 한번에
-> pwsh -Command "& {Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)}"
+> pwsh -Command "& {Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)}"
 > ```
 >
 >  
@@ -172,26 +172,26 @@ winrm e winrm/config/listener
   ```sh
   # 간단한 명령_self
   ## 직접 대화형으로 들어가는 경우
-  Enter-PSSession -ComputerName 192.168.100.116
+  Enter-PSSession -ComputerName 127.0.0.1
   
   ## 바로 명령으로 동작시키는 경우
-  Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { dir 'C:\' }
+  Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { dir 'C:\' }
   
   # 간단한 명령_remote
   ## 직접 대화형으로 들어가는 경우
-  Enter-PSSession -ComputerName 192.168.100.116 -Authentication Negotiate -Credential $cred
+  Enter-PSSession -ComputerName 127.0.0.1 -Authentication Negotiate -Credential $cred
   
   ## 바로 명령으로 동작시키는 경우
-  Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { dir 'C:\' } -Authentication Negotiate -Credential $cred
+  Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { dir 'C:\' } -Authentication Negotiate -Credential $cred
   
   # 인증까지 하는 명령
   $sessionoptions = (New-PSSessionOption -SkipCACheck -SkipCNCheck) 
   $securePassword = ConvertTo-SecureString -AsPlainText -Force password
   $cred = New-Object System.Management.Automation.PSCredential administrator, $securePassword 
-  Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential $cred -SessionOption $sessionoptions
+  Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential $cred -SessionOption $sessionoptions
   ```
 
-  - "Computer IP": 192.168.100.116
+  - "Computer IP": 127.0.0.1
   - "Password": password
   - "Username": administrator
 
@@ -258,21 +258,21 @@ winrm e winrm/config/listener
   # 간단한 명령
   ## 직접 대화형으로 들어가는 경우
   pwsh
-  Enter-PSSession -ComputerName 192.168.100.116 -Authentication Negotiate -Credential administrator
+  Enter-PSSession -ComputerName 127.0.0.1 -Authentication Negotiate -Credential administrator
   
   ## 바로 명령으로 동작시키는 경우
   pwsh
-  Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { dir 'C:\' }
+  Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { dir 'C:\' }
   
   # 인증까지 하는 명령
   pwsh
   $sessionoptions = (New-PSSessionOption -SkipCACheck -SkipCNCheck)
   $securePassword = ConvertTo-SecureString -AsPlainText -Force password
   $cred = New-Object System.Management.Automation.PSCredential administrator, $securePassword
-  Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential $cred -SessionOption $sessionoptions
+  Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential $cred -SessionOption $sessionoptions
   ```
 
-  - "Computer IP": 192.168.100.116
+  - "Computer IP": 127.0.0.1
   - "Password": password
   - "Username": administrator
 
@@ -285,13 +285,13 @@ winrm e winrm/config/listener
   $sessionoptions = (New-PSSessionOption -SkipCACheck -SkipCNCheck) '
   $securePassword = ConvertTo-SecureString -AsPlainText -Force password
   $cred = (New-Object System.Management.Automation.PSCredential km.park,  ConvertTo-SecureString -AsPlainText -Force mirero)
-  Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
+  Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)
   ```
 
 - after
 
   ```sh
-  pwsh -Command "& {Invoke-Command -ComputerName 192.168.100.116 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)}"
+  pwsh -Command "& {Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)}"
   ```
 
   - [명령링크 참고](https://docs.microsoft.com/ko-kr/powershell/module/microsoft.powershell.core/about/about_pwsh?view=powershell-7.2)

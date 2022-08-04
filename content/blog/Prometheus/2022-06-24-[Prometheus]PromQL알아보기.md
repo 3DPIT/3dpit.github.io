@@ -1,7 +1,7 @@
 ---
 title: Prometheus PromQL알아보기
 date: 2022-06-24 14:35:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 
@@ -14,7 +14,7 @@ draft: false
 >02.PromQL 데이터 유형
 >
 >>02.1실습 테스트
->>
+>>>
 >>02.2 명령하기
 >
 >03.PromQL 연산자

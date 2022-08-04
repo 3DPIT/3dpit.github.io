@@ -1,7 +1,7 @@
 ---
 title: grafana postgreSQL 교육 HeatMap
 date: 2022-07-25 07:54:00 +0900
-category: PoC
+category: DashBoard
 draft: false
 ---
 

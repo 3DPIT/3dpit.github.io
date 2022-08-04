@@ -1,7 +1,7 @@
 ---
 title: Prometheus Exporter 알아보기
 date: 2022-06-23 09:11:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Prometheus Docker를 이용하여 Prometheus설치하기
 date: 2022-06-23 13:13:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 

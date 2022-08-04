@@ -1,7 +1,7 @@
 ---
 title: grafana postgreSQL 교육 Gantt
 date: 2022-08-01 23:43:00 +0900
-category: PoC
+category: DashBoard
 draft: true
 ---
 

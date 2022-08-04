@@ -1,7 +1,7 @@
 ---
 title: Prometheus 메트릭 유형 알아보기
 date: 2022-06-24 10:13:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 
@@ -16,7 +16,7 @@ draft: false
 >02.2 프로메테우스 클라이언트
 >
 >>02.3 서버에 요청
->>
+>>>
 >>> 매트릭 정보 확인
 >
 >03.node express framework를 통한 summary 데이터 알아보기

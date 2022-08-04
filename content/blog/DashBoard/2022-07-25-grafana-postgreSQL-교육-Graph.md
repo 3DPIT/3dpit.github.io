@@ -1,7 +1,7 @@
 ---
 title: grafana postgreSQL 교육 Graph
 date: 2022-07-25 07:54:00 +0900
-category: PoC
+category: DashBoard
 draft: false
 ---
 
@@ -12,7 +12,7 @@ draft: false
  >01.Graph기본
  >
  >> 01.1 Graph 기본과 옵션
- >>
+ >>>>
  >> 01.2 time series  graph와 graph의 차이
  >
  >02.Graph예시

@@ -1,7 +1,7 @@
 ---
 title: PureStorage Prometheus 개념
 date: 2022-06-22 10:19:00 +0900
-category: PoC
+category: Prometheus
 draft: false
 ---
 
@@ -12,11 +12,11 @@ draft: false
 >01.개념정리
 >
 >>01.1 퓨어스토리지 플래시 어레이란?
->>
+>>>
 >>01.2 퓨어스토리지 플래시 블레이드란?
->>
+>>>
 >>01.3 Promethues란?
->>
+>>>
 >>> 01.3.1 Prometheus.yml 기본 이해하기
 >
 
