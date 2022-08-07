@@ -7,7 +7,21 @@ draft: false
 
 ## 2022-08-07-Confusion-Metrix-구현과정
 
+[Confusion-Metrix 대시보드](http://kyeongmin.iptime.org:3000/d/qiUgHrzVk/confusion-metrix?orgId=1)
+
 ## 목차
+
+>01.C++로 구현해보기
+>
+>>  01.1 5개가 고정된 경우
+>>
+>>  01.2 갯수에 맞게 나오는 경우
+>
+>02.코드 sql 함수화
+>
+>03.이전 코드와 같이 만들어보기
+>
+>04.갯수에 유동적인 소스
 
 ## 01.C++로 구현해보기
 
