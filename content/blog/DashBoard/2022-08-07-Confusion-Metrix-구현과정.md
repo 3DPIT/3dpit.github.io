@@ -568,9 +568,17 @@ int main(void)
 
 ## 05.또다른 방법 1
 
+![image-20220808230036992](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808230036992.png)
+
 ![image-20220808225552233](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808225552233.png)
 
 ```sql
+create table public.test3(
+    no          integer       
+  , title       varchar(300)  
+  , create_date timestamp(0)  
+);
+
 create table ep (
 	expected integer,
 	predicted integer
@@ -605,7 +613,7 @@ select expected, predicted, cnt, round((cnt/sum(cnt) over(partition by Expected)
 
 ![image-20220808221439185](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808221439185.png)
 
-## 05.1  자동으로 만들기
+### 05.1  자동으로 만들기
 
 ```sql
 create or replace function fn_test_table_insert1()
@@ -702,3 +710,5 @@ select * from public.test2;
 ```
 
 ![image-20220808225334602](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808225334602.png)
+
+![image-20220808230954482](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808230954482.png)
