@@ -530,6 +530,7 @@ int main(void)
   			,split_part(title,',',9 )as "8" 
   			,split_part(title,',',10 )as "9" 
   			,split_part(title,',',11 )as "10" 
+  			
   		from test1;
   --    	v_idx := 1;
   --    	v_string := null;
@@ -555,13 +556,13 @@ int main(void)
   select * from public.test2;
   
   ```
-
+  
   - dri의 테이블의 상태에 따라 다르게 나옴
-
+  
     - 10개인 경우 
-
+  
       ![image-20220808004145717](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808004145717.png)
-
+  
     - 5개인 경우
-
+  
       ![image-20220808004055686](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808004055686.png)

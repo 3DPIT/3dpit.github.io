@@ -2,10 +2,8 @@
 title: 미니프로젝트 IT BestPractice
 date: 2022-07-21 11:08:00 +0900
 category: PoC
-draft: false
+draft: true
 ---
-
-
 
 ## 2022-07-21-미니프로젝트-IT-BestPractice
 

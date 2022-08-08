@@ -2,12 +2,20 @@
 title: WINRM Linux를 이용한 접근테스트 [HTTP]
 date: 2022-07-25 14:46:00 +0900
 category: PoC
-draft: false
+draft: true
 ---
 
 ## 2022-07-25-WINRM-Linux를-이용한-접근테스트-[HTTP]
 
 ## 목차
+
+>01.리눅스 파워셀 설치
+>
+>>01.1 apt로 설치
+>
+>02.동작확인해보기
+>
+>>참고자료
 
 ## 01.리눅스 파워셀 설치
 

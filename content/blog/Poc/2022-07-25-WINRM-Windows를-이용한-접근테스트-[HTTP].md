@@ -2,7 +2,7 @@
 title: WINRM Windows를 이용한 접근테스트 [HTTP]
 date: 2022-07-25 13:16:00 +0900
 category: PoC
-draft: false
+draft: true
 ---
 
 ## 2022-07-25-WINRM-Windows를-이용한-접근테스트-[HTTP]

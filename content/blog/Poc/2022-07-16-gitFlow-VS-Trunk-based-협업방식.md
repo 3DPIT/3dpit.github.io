@@ -2,7 +2,7 @@
 title: GitFlow VS Trunk-based 협업방식
 date: 2022-07-16 09:14:00 +0900
 category: PoC
-draft: true
+draft: false
 ---
 
 ## 2022-07-16-GitFlow-VS-Trunk-based-협업방식
