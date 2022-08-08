@@ -566,3 +566,150 @@ int main(void)
     - 5개인 경우
   
       ![image-20220808004055686](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808004055686.png)
+
+## 05.또다른 방법 1
+
+![image-20220808230036992](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808230036992.png)
+
+![image-20220808225552233](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808225552233.png)
+
+```sql
+create table public.test3(
+    no          integer       
+  , title       varchar(300)  
+  , create_date timestamp(0)  
+);
+
+create table ep (
+	expected integer,
+	predicted integer
+);
+
+INSERT INTO ep(Expected,predicted) VALUES
+ (1,1)
+,(1,1)
+,(1,5)
+,(2,2)
+,(2,3)
+,(2,2)
+,(3,3)
+,(4,4)
+,(4,3)
+,(5,1)
+,(5,2)
+,(5,3)
+,(5,5);
+
+select distinct Expected, predicted, count(predicted) over(partition by Expected,predicted) from ep order by expected, predicted ;
+```
+
+![image-20220808220908432](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808220908432.png)
+
+```sql
+with eps as(
+select distinct Expected, predicted, count(predicted) over(partition by Expected,predicted)as cnt  from ep order by expected, predicted 
+)
+select expected, predicted, cnt, round((cnt/sum(cnt) over(partition by Expected)),2) as percent from eps;
+```
+
+![image-20220808221439185](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808221439185.png)
+
+### 05.1  자동으로 만들기
+
+```sql
+create or replace function fn_test_table_insert1()
+returns integer AS
+$$
+    declare
+		idx integer;
+		v_no integer:=1;
+		v_i integer:=1;
+		v_ii integer:=1;
+		v_number integer[];
+		r_i integer;
+		i_i integer;
+		p_i text;
+		v_idx integer:=1;
+		v_string text:=',';
+BEGIN
+	delete from test1;
+    -- 제목의 필수사항을 확인
+
+	select count(distinct expected) into v_no from ep;
+	
+	for v_i in 1..v_no
+		loop
+			for v_ii in 1..v_no
+			loop
+with eps as(
+select distinct Expected, predicted, count(predicted) over(partition by Expected,predicted)as cnt  from ep order by expected, predicted 
+), eps1 as(
+select expected, predicted, round((cnt/sum(cnt) over(partition by Expected)),2)::text as percent from eps)
+select * into r_i, i_i, p_i from eps1 where expected in (v_i) and predicted in (v_ii);
+            
+            if r_i is null then v_string := v_string||'0'||',';
+            else  v_string := v_string||p_i||',';
+            end if;
+			end loop;		
+	    insert into public.test1
+    		values
+      		(i_i,v_string, current_timestamp);
+			v_string:=',';
+		    end loop;
+		
+		drop table test2;
+	
+    	create table test2 (
+    		no integer
+    		,"1" text
+    		,"2" text
+    		,"3" text
+    		,"4" text
+    		,"5" text
+    		,"6" text
+    		,"7" text
+    		,"8" text
+    		,"9" text
+      		,"10" text
+      		
+    	);
+    
+    	insert into test2 (no,"1","2","3","4","5","6","7","8","9","10")select 
+			(ROW_NUMBER() OVER()) as " ",
+			split_part(title,',',2 )as "1"
+			,split_part(title,',',3 )as "2"
+			,split_part(title,',',4 )as "3"
+			,split_part(title,',',5 )as "4" 
+			,split_part(title,',',6 )as "5"
+			,split_part(title,',',7 )as "6" 
+			,split_part(title,',',8 )as "7" 
+			,split_part(title,',',9 )as "8" 
+			,split_part(title,',',10 )as "9" 
+			,split_part(title,',',11 )as "10" 
+		from test1;
+--    	v_idx := 1;
+--    	v_string := null;
+--    	for v_idx in 1..10
+--    		loop
+--    			select no, title into r_i, v_string from test1 where r_i in (v_idx);
+--    			
+--    		end loop
+--       
+    return v_no;	
+    -- primary key : no 채번
+--    select coalesce(max(no), 0) + 1 into v_no
+--      from public.test1;
+END;
+$$
+LANGUAGE plpgsql
+
+select fn_test_table_insert1();
+
+select * from public.test1;
+
+select * from public.test2;
+```
+
+![image-20220808225334602](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808225334602.png)
+
+![image-20220808230954482](../../assets/img/post/2022-08-07-Confusion-Metrix-구현과정/image-20220808230954482.png)
