@@ -62,7 +62,7 @@ draft: false
 > pwsh -Command "& {Invoke-Command -ComputerName 127.0.0.1 -ScriptBlock { cmd.exe /c dir } -Authentication Negotiate -Credential (New-Object System.Management.Automation.PSCredential km.park, (ConvertTo-SecureString -AsPlainText -Force mirero)) -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck)}"
 > ```
 >
->  
+> 
 
 ## 목차
 
