@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  webapplication7:
+    image: ${DOCKER_REGISTRY-}webapplication7
+    build:
+      context: .
+      dockerfile: WebApplication7/Dockerfile
+    ports:
+      - 5170:80
