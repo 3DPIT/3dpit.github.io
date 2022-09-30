@@ -319,7 +319,7 @@ curl -XGET "http://localhost:9200/books/_search?pretty=true" -d'
 
 - 1~100을 fetch하는 것이나 990~1000을 fetch하는 것이나 쿼리 작업 규모가 비슷
 
-  ![image-20220930103947210](../../assets/img/post/2022-09-07-ElasticSearch-세미나2/image-20220930103947210.png)
+  ![image-20220930110800559](../../assets/img/post/2022-09-07-ElasticSearch-세미나2/image-20220930110800559.png)
 
 ## 05.루씬 세그먼트
 
