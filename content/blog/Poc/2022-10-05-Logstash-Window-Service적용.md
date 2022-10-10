@@ -1,7 +1,7 @@
 ---
 title: Logstash Window Service적용
 date: 2022-10-05 11:42:00
-category: Poc
+category: PoC
 draft: true
 ---
 
