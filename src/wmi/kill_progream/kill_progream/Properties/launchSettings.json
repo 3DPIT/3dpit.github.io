@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "kill_progream": {
+      "commandName": "Project",
+      "commandLineArgs": "192.168.60.159 administrator mirero123@ "
+    }
+  }
+}
